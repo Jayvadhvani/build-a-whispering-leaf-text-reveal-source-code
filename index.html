@@ -1,0 +1,165 @@
+<!DOCTYPE html><html lang="en"><head>
+  
+  
+  <meta charset="UTF-8">
+  <title>Build a Whispering Leaf Text Reveal (Source Code)</title>
+  <style>
+    body { background: #fdfbf7; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; font-family: 'Georgia', serif;}
+    
+    .reveal-area {
+      width: 600px;
+      height: 300px;
+      border: 2px dashed #e2e8f0;
+      border-radius: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      position: relative;
+    }
+    
+    .word-container {
+      display: flex;
+      gap: 15px; /* Spaces between words */
+    }
+    
+    .word { display: flex; }
+    
+    span {
+      font-size: 2.5rem;
+      color: #166534;
+      display: inline-block;
+      transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    /* When hovered, we force all spans back to identity! */
+    .reveal-area:hover span {
+      transform: translate(0, 0) rotate(0deg) !important;
+      opacity: 1 !important;
+      filter: blur(0px) !important;
+    }
+    
+    .tip { position: absolute; bottom: 20px; color: #94a3b8; font-family: sans-serif; font-size: 0.9rem;}
+  </style>
+
+            <meta name="description" content="A beautiful component imported via Developer Studio AI.">
+            <meta name="robots" content="index, follow">
+            <meta property="og:title" content="Build a Whispering Leaf Text Reveal (Source Code)">
+            <meta property="og:description" content="A beautiful component imported via Developer Studio AI.">
+            <meta property="og:image" content="https://codescompiler.com/images/posts/js-whispering-leaf-text.png">
+            <meta name="twitter:card" content="summary_large_image">
+            <meta name="twitter:title" content="Build a Whispering Leaf Text Reveal (Source Code)">
+            <meta name="twitter:description" content="A beautiful component imported via Developer Studio AI.">
+            <meta name="twitter:image" content="https://codescompiler.com/images/posts/js-whispering-leaf-text.png">
+          </head>
+<body>
+
+<!-- ── CODESCOMPILER DEMO HEADER ── -->
+<style>
+  #cc-demo-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    height: 48px;
+    background: #1a1b26;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    color: white;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999999;
+  }
+  #cc-demo-header a { text-decoration: none; color: white; }
+  .cc-logo { font-size: 14px; font-weight: 900; }
+  .cc-logo span { color: #04aa6d; }
+  .cc-sep { width: 1px; height: 20px; background: rgba(255,255,255,0.12); margin: 0 12px; }
+  .cc-title { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.65); flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .cc-actions { display: flex; gap: 8px; }
+  .cc-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 12px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    color: rgba(255,255,255,0.7);
+  }
+  .cc-btn:hover { background: rgba(255,255,255,0.15); color: white; }
+  .cc-btn svg { width: 14px; height: 14px; }
+  @media (max-width: 600px) {
+    .cc-title { display: none; }
+    .cc-btn span { display: none; }
+  }
+</style>
+<header id="cc-demo-header">
+  <div style="display: flex; align-items: center; overflow: hidden;">
+    <a href="https://codescompiler.com" class="cc-logo" target="_blank" rel="dofollow"><span>Codes</span>Compiler</a>
+    <div class="cc-sep"></div>
+    <h1 class="cc-title" title="Build a Whispering Leaf Text Reveal (Source Code)" style="margin: 0; font-size: 13px; font-weight: 600;">📺 Build a Whispering Leaf Text Reveal (Source Code)</h1>
+  </div>
+  <div class="cc-actions">
+    <a href="https://codescompiler.com/blog/js-whispering-leaf-text" class="cc-btn" target="_blank" rel="dofollow" title="Read the full post">
+      <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path></svg>
+      <span>Back to Post</span>
+    </a>
+    <a href="index.html" class="cc-btn" target="_blank" download="js-whispering-leaf-text.html" title="Download source file">
+      <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+      <span>Download</span>
+    </a>
+    <button onclick="document.getElementById('cc-demo-header').style.display='none'" class="cc-btn" title="Hide header for fullscreen view">
+      <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l5-5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
+      <span>Fullscreen</span>
+    </button>
+  </div>
+</header>
+<!-- ================================== -->
+
+  <div class="reveal-area" id="area">
+    <div class="tip">Move mouse here</div>
+    <div class="word-container" id="container"></div>
+  </div>
+
+  <script>
+    const sentence = "Nature always listens.";
+    const container = document.getElementById('container');
+    
+    // Split into words, then into letters to keep spaces intact visually
+    const words = sentence.split(' ');
+    
+    words.forEach(word => {
+      let wordDiv = document.createElement('div');
+      wordDiv.className = 'word';
+      
+      word.split('').forEach(letter => {
+        let span = document.createElement('span');
+        span.innerText = letter;
+        
+        // Randomize initial scattered state!
+        const rot = (Math.random() * 180) - 90;
+        const tx = (Math.random() * 400) - 200;
+        const ty = (Math.random() * 300) - 150;
+        
+        span.style.transform = `translate(${tx}px, ${ty}px) rotate(${rot}deg)`;
+        span.style.opacity = Math.random() * 0.3;
+        span.style.filter = `blur(${Math.random() * 4}px)`;
+        
+        // Random transition delay so they don't all snap back at exactly the same time
+        span.style.transitionDelay = `${Math.random() * 0.3}s`;
+        
+        wordDiv.appendChild(span);
+      });
+      container.appendChild(wordDiv);
+    });
+  </script>
+
+
+</body></html>
